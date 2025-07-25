@@ -6,7 +6,9 @@ import qrcode from 'qrcode-terminal';
 export const client = new Client({
   authStrategy: new LocalAuth(),
   puppeteer: {
-    args: ['--no-sandbox'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    // Path executable untuk chromium yang diinstall dari x11-repo
+    executablePath: '/data/data/com.termux/files/usr/bin/chromium',
   },
 });
 
