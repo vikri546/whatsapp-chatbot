@@ -1,5 +1,5 @@
 {
-  "name": "whatsapp-chatbot-template",
+  "name": "whatsapp-chatbot",
   "version": "1.0.0",
   "description": "A template for building WhatsApp chatbots with Node.js.",
   "main": "lib/index.js",
@@ -21,18 +21,13 @@
     "@types/qrcode-terminal": "^0.12.2",
     "typescript": "^5.8.3"
   },
-  "peerDependencies": {
-    "whatsapp-web.js": "^1.31.0"
-  },
-  "files": [
-    "lib"
-  ],
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "axios": "^1.11.0",
     "cheerio": "^1.1.2",
     "dotenv": "^17.2.0",
     "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "whatsapp-web.js": "^1.23.0"
   }
 }
