@@ -1,2 +1,12 @@
+# Node.js
 node_modules
 lib
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# WhatsApp Web JS session data
+.wwebjs_auth/

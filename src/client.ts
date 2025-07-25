@@ -1,15 +1,33 @@
-import { Client, Message } from 'whatsapp-web.js';
+import { Client, Message, LocalAuth } from 'whatsapp-web.js';
 import { whatsappMessageFlow } from './flows';
+import qrcode from 'qrcode-terminal';
 
-export const client = new Client({});
+// Gunakan LocalAuth untuk menyimpan sesi
+export const client = new Client({
+  authStrategy: new LocalAuth(),
+  puppeteer: {
+    args: ['--no-sandbox'],
+  },
+});
 
 client.on('qr', (qr) => {
-  // Generate and scan this QR code with your phone
-  console.log('QR RECEIVED', qr);
+  // Hanya tampilkan QR jika belum ada sesi yang tersimpan
+  console.log('Sesi tidak ditemukan. Silakan pindai kode QR ini dengan WhatsApp Anda:');
+  qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
   console.log('Client is ready!');
+});
+
+// Event ini akan terpanggil jika otentikasi berhasil
+client.on('authenticated', () => {
+  console.log('Otentikasi berhasil! Sesi telah disimpan.');
+});
+
+// Event ini akan terpanggil jika otentikasi gagal
+client.on('auth_failure', (msg) => {
+  console.error('AUTHENTICATION FAILURE', msg);
 });
 
 client.on('message', (message: Message) => {
